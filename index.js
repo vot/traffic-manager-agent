@@ -21,6 +21,7 @@ function timeSinceInMs(startTime) {
 function trafficManagerAgentMiddleware(req, res, next) {
   // start measuring time
   const startAt = process.hrtime();
+  const startTimestamp = Date.now().toString();
   const ip = requestIp.getClientIp(req);
 
   // override res.send function to register event just before sending response
@@ -28,7 +29,7 @@ function trafficManagerAgentMiddleware(req, res, next) {
   res.send = function () {
     // console.log('Capturing stats');
     const requestTimeTaken = timeSinceInMs(startAt);
-    const metadata = {timeTaken: requestTimeTaken};
+    const metadata = {timeProcessing: requestTimeTaken, timestamp: startTimestamp};
     const sample = createSampleFromRequest(req, metadata);
     storage.add(sample);
     reporting.trigger();

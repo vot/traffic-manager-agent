@@ -4,13 +4,12 @@ const _ = require('lodash');
 
 const defaultConfig = {
   machineId: 'prod-web-instance-23',
-  site: {
+  policies: {
     blockedIps: [],
     whitelistedIps: [],
     thresholdAlert: 50,
     thresholdBlock: 100,
-    samplingFrameSeconds: 60,
-    supportEmail: 'support@example.com'
+    samplingFrameSeconds: 60
   },
   reporters: {
     stdout: {
@@ -27,7 +26,7 @@ const defaultConfig = {
     },
     hq: {
       enabled: true,
-      hq: 'https://hq.cyberpolice.io',
+      hq: 'https://trafficmanager.example.com',
       appId: '',
       appKey: '',
     },
