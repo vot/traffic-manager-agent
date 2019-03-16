@@ -18,36 +18,54 @@ function timeSinceInMs(startTime) {
 }
 
 
-function trafficManagerAgentMiddleware(req, res, next) {
-  // start measuring time
-  const startAt = process.hrtime();
-  const startTimestamp = Date.now().toString();
-  const ip = requestIp.getClientIp(req);
+function generateTrafficManagerAgentMiddleware(opts) {
 
-  // override res.send function to register event just before sending response
-  const originalFn = res.send;
-  res.send = function () {
-    // console.log('Capturing stats');
-    const requestTimeTaken = timeSinceInMs(startAt);
-    const metadata = {timeProcessing: requestTimeTaken, timestamp: startTimestamp};
-    const sample = createSampleFromRequest(req, metadata);
-    storage.add(sample);
-    reporting.trigger();
+  function trafficManagerAgentMiddleware(req, res, next) {
+    // start measuring time
+    const startAt = process.hrtime();
+    const startTimestamp = Date.now().toString();
+    const ip = requestIp.getClientIp(req);
 
-    console.log('Sending response');
-    originalFn.apply(this, arguments);
-  };
+    // override res.send function to register event just before sending response
+    const originalFn = res.send;
+    res.send = function (body) {
+      // console.log('Capturing stats');
+      const timeProcessing = timeSinceInMs(startAt);
+      const responseSize = body.length;
+      const statusCode = res.statusCode;
+      // console.log('statusCode RES', res.statusCode);
+      // console.log('statusCode REQ', req.statusCode);
+      // console.log('url REQ', req.url);
+      // console.log('originalUrl REQ', req.originalUrl);
 
-  // perform throttling
-  const shouldBlock = throttling.shouldBlock(ip);
 
-  if (shouldBlock) {
-    const sampleData = createSampleFromRequest(req);
-    return throttling.blockRequest(sampleData, res);
+      const metadata = {
+        timestamp: startTimestamp,
+        timeProcessing,
+        responseSize,
+        statusCode
+      };
+      const sample = createSampleFromRequest(req, metadata);
+      storage.add(sample);
+      reporting.trigger();
+
+      console.log(`Sending response to client in ${timeProcessing}ms.`);
+      originalFn.apply(this, arguments);
+    };
+
+    // perform throttling
+    const shouldBlock = throttling.shouldBlock(ip);
+
+    if (shouldBlock) {
+      const sampleData = createSampleFromRequest(req, {statusCode: 429});
+      return throttling.blockRequest(sampleData, res);
+    }
+
+    next();
   }
 
-  next();
+  return trafficManagerAgentMiddleware;
 }
 
 
-module.exports = trafficManagerAgentMiddleware;
+module.exports = generateTrafficManagerAgentMiddleware;
