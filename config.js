@@ -1,9 +1,12 @@
 'use strict';
 
 const _ = require('lodash');
+const os = require('os');
 
 const defaultConfig = {
-  machineId: 'prod-web-instance-23',
+  instance: {
+    id: os.hostname()
+  },
   policies: {
     blockedIps: [],
     whitelistedIps: [],
@@ -41,7 +44,7 @@ const defaultConfig = {
 const config = defaultConfig;
 
 function get(prop) {
-  return _.get(config, prop);
+  return _.get(config, prop, '');
 }
 
 function set(prop, val) {
