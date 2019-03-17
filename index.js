@@ -20,7 +20,6 @@ function timeSinceInMs(startTime) {
 
 
 function generateTrafficManagerAgentMiddleware(appConfig) {
-
   config.init(appConfig);
 
   function trafficManagerAgentMiddleware(req, res, next) {
@@ -58,7 +57,7 @@ function generateTrafficManagerAgentMiddleware(appConfig) {
     const shouldBlock = throttling.shouldBlock(ip);
 
     if (shouldBlock) {
-      const sampleData = createSampleFromRequest(req, {statusCode: 429});
+      const sampleData = createSampleFromRequest(req, { statusCode: 429 });
       return throttling.blockRequest(sampleData, res);
     }
 
