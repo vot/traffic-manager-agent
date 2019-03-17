@@ -30,7 +30,7 @@ function generateTrafficManagerAgentMiddleware(appConfig) {
 
     // override res.send function to register event just before sending response
     const originalFn = res.send;
-    res.send = function (body) {
+    res.send = function trafficManagedSend(body) {
       // console.log('Capturing stats');
       const timeProcessing = timeSinceInMs(startAt);
       const responseSize = body.length;
@@ -61,7 +61,7 @@ function generateTrafficManagerAgentMiddleware(appConfig) {
       return throttling.blockRequest(sampleData, res);
     }
 
-    next();
+    return next();
   }
 
   return trafficManagerAgentMiddleware;

@@ -10,17 +10,20 @@ const defaultConfig = {
     id: os.hostname()
   },
   policies: {
-    blockedIps: [],
+    blacklistedIps: [],
     whitelistedIps: [],
-    thresholdAlert: 50,
-    thresholdBlock: 100,
+    perThreadBlockingEnabled: false,
+    perThreadBlockingThreshold: 0,
     samplingFrameSeconds: 60
   },
   reporters: {
-    StdOut: {
-      enabled: true,
-      format: 'apachecommon'
-    }
+    StdOut: [
+      {
+        enabled: true,
+        type: 'immediate',
+        format: 'apachecommon'
+      }
+    ]
   }
 };
 
