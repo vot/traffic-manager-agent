@@ -3,6 +3,8 @@
 const _ = require('lodash');
 const os = require('os');
 
+let realConfig;
+
 const defaultConfig = {
   instance: {
     id: os.hostname()
@@ -15,43 +17,26 @@ const defaultConfig = {
     samplingFrameSeconds: 60
   },
   reporters: {
-    stdout: {
+    StdOut: {
       enabled: true,
-      level: 'alert'
-    },
-    apachelog: {
-      enabled: true,
-      path: './apache.log'
-    },
-    json: {
-      enabled: true,
-      path: './cyberpolice.log'
-    },
-    hq: {
-      enabled: true,
-      hq: 'https://trafficmanager.example.com',
-      appId: '',
-      appKey: '',
-    },
-    slack: {
-      enabled: true,
-      level: 'block',
-      hookUrl: ''
+      format: 'apachecommon'
     }
   }
 };
 
-const config = defaultConfig;
-
+function init(appConfig) {
+  realConfig = _.merge({}, defaultConfig, appConfig);
+}
 function get(prop) {
-  return _.get(config, prop, '');
+  return _.get(realConfig, prop, '');
 }
 
 function set(prop, val) {
-  return _.set(config, prop, val);
+  return _.set(realConfig, prop, val);
 }
 
 module.exports = {
+  init,
   get,
   set
 };
