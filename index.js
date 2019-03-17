@@ -2,6 +2,7 @@
 
 const requestIp = require('request-ip');
 
+const config = require('./config');
 const storage = require('./lib/storage');
 const reporting = require('./lib/reporting');
 const throttling = require('./lib/throttling');
@@ -14,16 +15,18 @@ const createSampleFromRequest = require('./lib/createSampleFromRequest');
 function timeSinceInMs(startTime) {
   const diff = process.hrtime(startTime);
   const time = diff[0] * 1e3 + diff[1] * 1e-6;
-  return time;
+  return Math.ceil(time);
 }
 
 
-function generateTrafficManagerAgentMiddleware(opts) {
+function generateTrafficManagerAgentMiddleware(appConfig) {
+
+  config.init(appConfig);
 
   function trafficManagerAgentMiddleware(req, res, next) {
     // start measuring time
     const startAt = process.hrtime();
-    const startTimestamp = Date.now().toString();
+    const startTimestamp = Number(Date.now().toString());
     const ip = requestIp.getClientIp(req);
 
     // override res.send function to register event just before sending response
@@ -33,10 +36,6 @@ function generateTrafficManagerAgentMiddleware(opts) {
       const timeProcessing = timeSinceInMs(startAt);
       const responseSize = body.length;
       const statusCode = res.statusCode;
-      // console.log('statusCode RES', res.statusCode);
-      // console.log('statusCode REQ', req.statusCode);
-      // console.log('url REQ', req.url);
-      // console.log('originalUrl REQ', req.originalUrl);
 
 
       const metadata = {
@@ -47,9 +46,11 @@ function generateTrafficManagerAgentMiddleware(opts) {
       };
       const sample = createSampleFromRequest(req, metadata);
       storage.add(sample);
-      reporting.trigger();
 
-      console.log(`Sending response to client in ${timeProcessing}ms.`);
+      reporting.sendEventImmediately(sample);
+      reporting.sendAggregatedFrameIfReady();
+
+      // console.log(`Sending response to client in ${timeProcessing}ms.`);
       originalFn.apply(this, arguments);
     };
 

@@ -16,16 +16,14 @@ npm install @cambridgecore/trafficmanager-agent --save
 const TrafficManagerAgent = require('@cambridgecore/traffic-manager-agent');
 
 const trafficManagerOpts = {
-  samplingFrameDurationSeconds: 60,
-  throttleRequestsLimitPerThread: 1000,
-
   reporters: {
+    File: {
+      enabled: true,
+      format: 'apachecommon'
+      location: './accesslog.log'
+    },
     StdOut: {
       enabled: false
-    },
-    ApacheCommonLog: {
-      enabled: true,
-      file: './ApacheCommonLog.log'
     },
     TrafficManagerHQ: {
       enabled: true,
