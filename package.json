@@ -1,13 +1,13 @@
 {
-  "name": "@cambridgecore/traffic-manager-agent",
+  "name": "@vot/traffic-manager-agent",
   "version": "0.0.1",
   "description": "An agent to monitor patterns in your web app traffic.",
   "keywords": [],
   "main": "index.js",
-  "author": "Cambridge University Press",
+  "author": "Vot",
   "repository": {
     "type": "git",
-    "url": "https://gitlab.aop.cambridge.org/aop-cms/traffic-manager-agent.git"
+    "url": "https://github.com/vot/traffic-manager-agent.git"
   },
   "scripts": {
     "lint": "eslint .",

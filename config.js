@@ -21,7 +21,7 @@ const defaultConfig = {
       {
         enabled: true,
         type: 'immediate',
-        format: 'apachecommon'
+        format: 'apache'
       }
     ]
   }
