@@ -35,7 +35,7 @@ const trafficManagerOpts = {
       enabled: true,
       format: 'apache'
       location: './access_log'
-    }
+    },
   }
 };
 
@@ -60,6 +60,7 @@ const trafficManagerOpts = {
   reporters: {
     TMHub: {
       enabled: true,
+      rate: 10,
       url: 'https://trafficmanager.example.com',
       siteId: '2fb5193d923f4b71ad6a771e8700aa1f',
       siteSecret: 'zN2EY69fmy303MUEs7ZkQv8sqeuFjFEp'
@@ -106,6 +107,7 @@ const trafficManagerOpts = {
     },
     TMHub: {
       enabled: true,
+      rate: 30,
       url: 'https://trafficmanager.example.com',
       siteId: '2fb5193d923f4b71ad6a771e8700aa1f',
       siteSecret: 'zN2EY69fmy303MUEs7ZkQv8sqeuFjFEp'
