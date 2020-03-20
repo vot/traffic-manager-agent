@@ -9,7 +9,7 @@ Middleware in your Node application to collect the incoming requests.
 Add agent module to your project's dependencies
 
 ```
-npm install @vot/traffic-manager-agent --save
+npm install @vothub/traffic-manager-agent --save
 ```
 
 After this just follow the instructions to generate accesslog of your application
@@ -27,7 +27,7 @@ tools readily available.
 Just register the middleware before other routes in your app and restart the app.
 
 ```
-const TrafficManagerAgent = require('@vot/traffic-manager-agent');
+const TrafficManagerAgent = require('@vothub/traffic-manager-agent');
 
 const trafficManagerOpts = {
   reporters: {
@@ -54,7 +54,7 @@ understand the patterns in it, perform early threat analysis and shape the traff
 with customisable rate limiting.
 
 ```
-const TrafficManagerAgent = require('@vot/traffic-manager-agent');
+const TrafficManagerAgent = require('@vothub/traffic-manager-agent');
 
 const trafficManagerOpts = {
   reporters: {
@@ -77,11 +77,10 @@ app.use(trafficManagerMiddleware);
 
 You can combine multiple reporters in a single application.
 
-For example you can have accesslog produced for the teams maintaining infrastructure,
-standard output to console for developers and a web UI with basic analysis for
-everyone else.
+For example you can have a standard accesslog produced for the infrastructure team,
+console output for developers and a web UI with basic analysis for everyone else.
 
-Simply expand the reporters property by providing more outputs.
+Simply expand the reporters property to provide more outputs.
 
 Each reporter has at least `enabled` property which accepts `true` and `false` values.
 
@@ -93,7 +92,7 @@ Each reporter has at least `enabled` property which accepts `true` and `false` v
 
 
 ```
-const TrafficManagerAgent = require('@vot/traffic-manager-agent');
+const TrafficManagerAgent = require('@vothub/traffic-manager-agent');
 
 const trafficManagerOpts = {
   reporters: {

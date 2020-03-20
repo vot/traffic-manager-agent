@@ -1,27 +1,32 @@
 {
-  "name": "@vot/traffic-manager-agent",
+  "name": "@vothub/traffic-manager-agent",
   "version": "0.0.1",
   "description": "Middleware to monitor patterns in your web app traffic.",
   "keywords": [],
-  "main": "index.js",
-  "author": "Vot",
+  "main": "main.js",
+  "author": "Vot Z <https://vot-z.com>",
+  "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/vot/traffic-manager-agent.git"
+    "url": "https://github.com/vothub/traffic-manager-agent.git"
   },
   "scripts": {
+    "start": "node main.js",
     "lint": "eslint .",
     "test": "mocha **/*.spec.js"
   },
-  "license": "MIT",
   "dependencies": {
     "lodash": "^4.17.15",
-    "request": "^2.88.0",
+    "request": "^2.88.2",
     "request-ip": "^2.1.3"
   },
   "devDependencies": {
-    "eslint": "6.2.1",
-    "eslint-config-airbnb-base": "14.0.0",
-    "eslint-plugin-import": "^2.18.2"
+    "chai": "^4.2.0",
+    "eslint": "6.8.0",
+    "eslint-config-airbnb-base": "14.1.0",
+    "eslint-plugin-import": "^2.20.1",
+    "nyc": "^15.0.0",
+    "mocha": "^7.1.1",
+    "mocha-lcov-reporter": "^1.3.0"
   }
 }
