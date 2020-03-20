@@ -1,5 +1,5 @@
 {
-  "name": "@vothub/traffic-manager-agent",
+  "name": "@vot/traffic-manager-agent",
   "version": "0.0.1",
   "description": "Middleware to monitor patterns in your web app traffic.",
   "keywords": [],
@@ -8,7 +8,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/vothub/traffic-manager-agent.git"
+    "url": "https://github.com/vot/traffic-manager-agent.git"
   },
   "scripts": {
     "start": "node main.js",

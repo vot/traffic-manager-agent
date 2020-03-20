@@ -9,7 +9,7 @@ Middleware in your Node application to collect the incoming requests.
 Add agent module to your project's dependencies
 
 ```
-npm install @vothub/traffic-manager-agent --save
+npm install @vot/traffic-manager-agent --save
 ```
 
 After this just follow the instructions to generate accesslog of your application
@@ -27,7 +27,7 @@ tools readily available.
 Just register the middleware before other routes in your app and restart the app.
 
 ```
-const TrafficManagerAgent = require('@vothub/traffic-manager-agent');
+const TrafficManagerAgent = require('@vot/traffic-manager-agent');
 
 const trafficManagerOpts = {
   reporters: {
@@ -54,7 +54,7 @@ understand the patterns in it, perform early threat analysis and shape the traff
 with customisable rate limiting.
 
 ```
-const TrafficManagerAgent = require('@vothub/traffic-manager-agent');
+const TrafficManagerAgent = require('@vot/traffic-manager-agent');
 
 const trafficManagerOpts = {
   reporters: {
@@ -92,7 +92,7 @@ Each reporter has at least `enabled` property which accepts `true` and `false` v
 
 
 ```
-const TrafficManagerAgent = require('@vothub/traffic-manager-agent');
+const TrafficManagerAgent = require('@vot/traffic-manager-agent');
 
 const trafficManagerOpts = {
   reporters: {
