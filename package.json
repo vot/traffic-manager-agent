@@ -1,6 +1,6 @@
 {
   "name": "traffic-manager-agent",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Middleware to monitor patterns in your web app traffic.",
   "keywords": [],
   "main": "main.js",
@@ -10,6 +10,14 @@
     "type": "git",
     "url": "https://github.com/vot/traffic-manager-agent.git"
   },
+  "bugs": {
+    "url": "https://github.com/vot/traffic-manager-agent/issues"
+  },
+  "keywords": [
+    "traffic",
+    "rate limit"
+  ],
+  "homepage": "https://vothub.com/traffic-manager",
   "scripts": {
     "start": "node main.js",
     "lint": "eslint .",
