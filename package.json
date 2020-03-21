@@ -1,5 +1,5 @@
 {
-  "name": "@vot/traffic-manager-agent",
+  "name": "traffic-manager-agent",
   "version": "0.0.1",
   "description": "Middleware to monitor patterns in your web app traffic.",
   "keywords": [],
