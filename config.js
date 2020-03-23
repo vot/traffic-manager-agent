@@ -9,22 +9,13 @@ const defaultConfig = {
   instance: {
     id: os.hostname()
   },
-  policies: {
+  settings: {
     blacklistedIps: [],
     whitelistedIps: [],
-    perThreadBlockingEnabled: false,
-    perThreadBlockingThreshold: 0,
-    samplingFrameSeconds: 60
+    perThreadRateLimit: 0,
+    frameDurationSeconds: 60
   },
-  reporters: {
-    StdOut: [
-      {
-        enabled: true,
-        type: 'immediate',
-        format: 'apache'
-      }
-    ]
-  }
+  reporters: []
 };
 
 function init(appConfig) {
