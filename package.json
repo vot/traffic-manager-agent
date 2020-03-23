@@ -1,6 +1,6 @@
 {
   "name": "traffic-manager-agent",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Middleware to monitor patterns in your web app traffic.",
   "keywords": [],
   "main": "main.js",
