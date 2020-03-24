@@ -132,6 +132,15 @@ reporting.
 - `stdout`
 - `tmhub`
 
+**stdout**
+
+`stdout` reporter outputs a summary of a frame in one of two formats:
+`count-only` or `detailed`. Specify it as `format` in reporter options.
+
+`detailed` format also supports `topEntriesLimit` to change how many "top clients"
+should be included in the frame summary message.
+
+
 **tmhub**
 
 `tmhub` is used to link with **Traffic Manager Hub** which aggregates the frames
@@ -177,7 +186,8 @@ const trafficManagerOpts = {
     {
       type: 'frame',
       output: 'stdout',
-      format: 'summary'
+      format: 'count-only',
+      topEntriesLimit: 5
     },
 
     {

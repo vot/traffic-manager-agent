@@ -7,7 +7,7 @@ const storage = require('./lib/storage');
 const reporting = require('./lib/reporting');
 const throttling = require('./lib/throttling');
 
-const createSampleFromRequest = require('./lib/createSampleFromRequest');
+const createSampleFromRequest = require('./lib/util/createSampleFromRequest');
 
 /**
  * Calculates ms difference from two process.hrtime points (high resolution time)
