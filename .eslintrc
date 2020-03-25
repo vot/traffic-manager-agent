@@ -19,7 +19,8 @@
     "prefer-rest-params": "warn",
     "no-nested-ternary": "warn",
     "arrow-body-style": "off",
-    "strict": "off"
+    "strict": "off",
+    "object-curly-newline": "warn"
   },
   "overrides": [{
     "files": ["**/*.spec.js"],
