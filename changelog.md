@@ -1,5 +1,10 @@
 # Changelog
 
+## v0.0.5
+- Add the first unit test
+- Add `prepublishOnly` step to enforce lint and unit tests
+
+
 ## v0.0.4
 - Clean up `stdout` frame reporter
 - Improve naming consistency

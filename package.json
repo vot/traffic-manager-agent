@@ -1,6 +1,6 @@
 {
   "name": "traffic-manager-agent",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "Middleware to monitor patterns in your web app traffic.",
   "main": "main.js",
   "author": "Vot Z <https://vot-z.com>",
